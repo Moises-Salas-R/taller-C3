@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nuevo Registro</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/list">
+        <ion-icon name="list-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="registroForm" (ngSubmit)="guardarRegistro()">
+    
+    <!-- Descripción -->
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-input formControlName="descripcion" type="text"></ion-input>
+    </ion-item>
+
+    <!-- Imagen -->
+    <div class="ion-margin-top" style="text-align: center;">
+      <ion-button expand="block" color="primary" (click)="seleccionarImagen()">
+        Seleccionar Imagen
+      </ion-button>
+
+      <!-- Vista previa -->
+      <img *ngIf="imagePreview" [src]="imagePreview" [alt]="'Vista previa'" style="margin-top: 15px; max-width: 100%; border-radius: 8px;" />
+    </div>
+
+    <!-- Botón Guardar -->
+    <ion-button expand="block" color="success" type="submit" [disabled]="loading || !registroForm.valid || !imageFile" class="ion-margin-top">
+      {{ loading ? 'Guardando...' : 'Guardar Registro' }}
+    </ion-button>
+    
+  </form>
+
+</ion-content>

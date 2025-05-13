@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Lista de Registros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Registros</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <!-- Usamos *ngFor para iterar sobre los registros -->
+    <ion-item *ngFor="let registro of registros$ | async">
+      <ion-thumbnail slot="start">
+        <!-- Mostrar miniatura de la imagen -->
+        <img [src]="registro.imagenUrl" alt="Miniatura" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ registro.descripcion }}</h2>
+        <p>{{ registro.fechaCreacion | date: 'short' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-footer>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button expand="full" (click)="goToHome()">Volver al Registro</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>
